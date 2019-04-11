@@ -1,0 +1,57 @@
+html, body, #app, .app {
+  width: 100%;
+  height: 100%;
+}
+.layoutOuterClass {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.layoutHeaderOuter {
+  height: 50px;
+  flex-shrink: 0;
+  background-color: #001529;
+}
+.layoutContainerOuter {
+  flex: 1;
+  display: flex;
+  background-color: #0089af;
+}
+.layoutSiderOuter {
+  width: auto;
+  height: 100%;
+  margin: 10px;
+  background-color: #0089af;
+}
+.layoutSiderContainerOuter {
+  flex: 1;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.asideCollapseButton {
+  height: 48px;
+  color: #fff;
+  line-height: 48px;
+  text-align: center;
+  background: #002140;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.layoutSiderContainerHeader {
+  height: 80px;
+  flex-shrink: 0;
+}
+.menuList {
+  height: 40px;
+  background-color: rgb(189, 159, 159);
+}
+.menuBreadCrumbs {
+  height: 40px;
+  background-color: rgb(128, 90, 90);
+}
+.layoutSiderContainerCont {
+  padding: 10px;
+}
