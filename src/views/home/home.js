@@ -32,7 +32,7 @@ class Home extends Component {
     //   }
     // })
     // this.props.dispatch(actions.addTodo(path))
-    console.log(this.props.state)
+    // console.log(this.props.state)
     this.props.history.push(path)
   }
   rodomOperate() {
@@ -40,12 +40,12 @@ class Home extends Component {
     this.props.actionsBind.addTodo({number})
     // this.props.dispatch(actions.addTodo({number}));
     // console.log(this.props.state)
-    console.log(this.eleRefDiv.current)
-    console.log(this.eleRefDivNone)
+    // console.log(this.eleRefDiv.current)
+    // console.log(this.eleRefDivNone)
   }
   componentDidMount() {
-    console.log(this.props)
-    console.log(process)
+    // console.log(this.props)
+    // console.log(process)
     
     // console.log(this.props.dispatch)
     // this.props.actionsOne("cacdwcdascd")

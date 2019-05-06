@@ -25,7 +25,11 @@ ReactDOM.render(
     <Router history={createHistory}>
       <Switch >
         <App>
-          <Route component={Aside} ></Route>
+          <Route exact path="/" component={Aside} ></Route>
+          <Route path="/home" component={Aside} ></Route>
+          <Route path="/module2" component={Aside} ></Route>
+          <Route path="/module3" component={Aside} ></Route>
+          <Route path="/login" component={ModuleSecond} ></Route>
         </App>
       </Switch>
     </Router>

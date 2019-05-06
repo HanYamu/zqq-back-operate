@@ -17,7 +17,6 @@ class AsideRoutes extends Component {
   render(){
     return (
       <div>
-        <Route></Route>
         <Route path="/home" component={Home}></Route>
         <Route path="/module1" component={ModuleFirst}></Route>
         <Route path="/module2" component={ModuleSecond}></Route>

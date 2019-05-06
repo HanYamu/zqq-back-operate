@@ -1,33 +1,81 @@
 import React, { Component } from 'react';
-import {UiHead, UiContainer, UiLayout} from '../../components/uiComponents/uiComponents';
+import {Row, Col, Form, Input, Table, Button, Modal, Select, DatePicker, message } from 'antd'
 import "./module.less"
 
-// class ModuleSecond extends Component {
-//   constructor(props, context) {
-//     super(props, context);
-//     this.state = {}
-//   }
-//   routerTo(path) {
-//     this.props.history.push(path)
-//   }
-  
-//   render(){
-//     return (
-//       <UiLayout> 
-//         <UiHead headerOptions={{title: "模块2"}}></UiHead>
-//         <UiContainer>
-//           <div className="itemTo" onClick={this.routerTo.bind(this, "/module1")} >To Module1</div>
-//           <div className="itemTo" onClick={this.routerTo.bind(this, "/module3")} >To Module3</div>
-//           <div className="funcBtn" >功能按钮</div>
-//           <img className="imgClass" src={require("../../assets/img/loading-zqq.png")} alt=""/>
-//         </UiContainer>
-//       </UiLayout>
-//     )
-//   }
-// }
+const confirm = Modal.confirm
+const Option = Select.Option;
+const { RangePicker } = DatePicker;
 
-// export default ModuleSecond
-const ModuleSecond = (props => {
-  <div>{props}</div>
-})
+const conlomn = [{
+  title: 'name',
+  dataIndex: 'name',
+  key: 'name',
+}, {
+  title: 'Age',
+  dataIndex: 'age',
+  key: 'age',
+}, {
+  title: 'address',
+  dataIndex: 'address',
+  key: 'address',
+}]
+
+const data = [{
+  key: '1',
+  name: 'John Brown',
+  age: 32,
+  address: 'New York No. 1 Lake Park',
+}, {
+  key: '2',
+  name: 'Jim Green',
+  age: 42,
+  address: 'London No. 1 Lake Park',
+}, {
+  key: '3',
+  name: 'Joe Black',
+  age: 32,
+  address: 'Sidney No. 1 Lake Park',
+}, {
+  key: '4',
+  name: 'Jim Red',
+  age: 32,
+  address: 'London No. 2 Lake Park',
+}];
+
+
+class ModuleSecond extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {}
+  }
+  routerTo(path) {
+    this.props.history.push(path)
+  }
+  
+  render(){
+    return (
+      <div>
+        <Row gutter={24}>
+          <Col span={8}>
+            {/* <div></div> */}
+            <div><Input /></div>
+          </Col>
+          <Col span={8}>
+            {/* <div></div> */}
+            <div><Input /></div>
+          </Col>
+          <Col span={8}>
+            {/* <div></div> */}
+            <div><Input /></div>
+          </Col>
+        </Row>
+        <Row gutter={24}>
+          <Table columns={conlomn} dataSource={data} />
+        </Row>
+      </div>
+    )
+  }
+}
+
+
 export default ModuleSecond

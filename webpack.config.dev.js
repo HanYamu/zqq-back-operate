@@ -49,9 +49,9 @@ const devConfig = {
             { loader: "style-loader",},
             {
                 loader: "css-loader",
-                options:{
-                    importLoaders:1
-                }
+                // options:{
+                //     importLoaders:1
+                // }
             }
         ]
       },

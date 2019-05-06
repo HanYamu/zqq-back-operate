@@ -5,18 +5,22 @@ import AsideRoutes from "../../router/router"
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
-import Home from "../home/home"
-import ModuleFirst from "../module/moduleFirst"
-import {Route} from 'react-router-dom';
 
 
-const menuListArray = [
-  {
+const menuListArray = [{
     name: "首页",
     label: "首页",
     key: "home",
     value: "home",
     linkUrl: "/home",
+    children: [],
+  },
+  {
+    name: "列表",
+    label: "列表",
+    key: "module2",
+    value: "module2",
+    linkUrl: "/module2",
     children: [],
   },
   {
@@ -59,11 +63,15 @@ class LayoutAside extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false
+      collapsed: false,
+      breadTitle: null,
     }
   }
 
   componentDidMount() {
+    if(sessionStorage.getItem("breadTitle")) {
+      this.setState({breadTitle: sessionStorage.getItem("breadTitle")})
+    }
     console.log(this.props)
   }
   onCollapse() {
@@ -72,10 +80,21 @@ class LayoutAside extends Component {
   menuChange(key, type) {
     console.log(key, type)
   }
-  routerTo(path) {
-    console.log(window.historyState)
-    console.log(this)
-    this.props.history.replace(path)
+  routerTo(level, nowMenu, secondMenu, firstMenu) { // level: 表示为几级的目录
+    // console.log(nowMenu)
+    // console.log(secondMenu)
+    // console.log(firstMenu)
+    let breadTitle = "首页"
+    if(level === "1") {
+      breadTitle = nowMenu.label
+    } else if(level === "2") {
+      breadTitle = secondMenu.label + " / " + nowMenu.label
+    } else if(level === "3") {
+      breadTitle = firstMenu.label + " / " + secondMenu.label + " / " + nowMenu.label
+    }
+    this.setState({breadTitle});
+    sessionStorage.setItem("breadTitle", breadTitle)
+    this.props.history.replace(nowMenu.linkUrl)
   }
 
   render(){
@@ -91,7 +110,7 @@ class LayoutAside extends Component {
                 // defaultSelectedKeys={['1']}
                 // defaultOpenKeys={['sub1']}
                 style={{ height: '100%', borderRight: 0 }}
-                onOpenChange={this.menuChange.bind(this)}
+                // onOpenChange={this.menuChange.bind(this)}
               >
                 {
                   menuListArray.length > 0 && menuListArray.map((item, index) => {
@@ -103,18 +122,18 @@ class LayoutAside extends Component {
                               return <SubMenu key={itemChild.key} title={<span><Icon type="laptop" />{itemChild.label}</span>}>
                                 {
                                   itemChild.children.map((itemThird, index) => {
-                                    return <Menu.Item key={itemThird.key} onClick={this.routerTo.bind(this, itemThird.linkUrl)}>{itemThird.label}</Menu.Item>
+                                    return <Menu.Item key={itemThird.key} onClick={this.routerTo.bind(this, "3", itemThird, itemChild, item)}>{itemThird.label}</Menu.Item>
                                   })
                                 }
                               </SubMenu>
                             } else {
-                              return <Menu.Item key={itemChild.key} onClick={this.routerTo.bind(this, itemChild.linkUrl)}>{itemChild.label}</Menu.Item>
+                              return <Menu.Item key={itemChild.key} onClick={this.routerTo.bind(this, "2", itemChild, item)}>{itemChild.label}</Menu.Item>
                             }
                           })
                         }
                       </SubMenu>
                     } else {
-                      return <Menu.Item key={item.key} onClick={this.routerTo.bind(this, item.linkUrl)}>{item.label}</Menu.Item>
+                      return <Menu.Item key={item.key} onClick={this.routerTo.bind(this, "1", item)}>{item.label}</Menu.Item>
                     }
                   })
                 }
@@ -124,7 +143,7 @@ class LayoutAside extends Component {
           <div className="layoutSiderContainerOuter">
             <div className="layoutSiderContainerHeader">
               <div className="menuList"></div>
-              <div className="menuBreadCrumbs"></div>
+              <div className="menuBreadCrumbs">{this.state.breadTitle}</div>
             </div>
             <div className="layoutSiderContainerCont">
               <AsideRoutes></AsideRoutes>
